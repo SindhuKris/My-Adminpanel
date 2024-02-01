@@ -9,7 +9,7 @@ import {Facts} from './home.type';
 })
 export class HomeComponent implements OnInit{ 
 
-  facts: Facts[] = [];
+  facts: Facts[] =[];
 
   constructor(
     private http: HttpClient
@@ -21,9 +21,9 @@ export class HomeComponent implements OnInit{
 
   getTrendingMovies(){
     this.http.get<Facts[]>('https://cat-fact.herokuapp.com/facts')
-    .subscribe((facts) => {
+    .subscribe((facts) =>{
       this.facts = facts;
-    });
+    })
   }
 
 

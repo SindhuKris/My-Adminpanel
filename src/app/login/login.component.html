@@ -1,0 +1,29 @@
+
+<div class="login-container">
+    <img class="film" src="assets/images/imgbin_reel-silent-film-png.png" alt="">
+    <div class="logo">Rotten Potatoes</div>
+    <div class="desc">
+        Rotten Potatoes are the world's most trusted recommendation resources for quality entertainment. As the leading online aggregator of movie and TV show reviews from critics, we provide fans with a comprehensive guide to what's Fresh - and what's Rotten - in theaters and at home. If you are an entertainment fan looking for a recommendation, or to share an opinion you have come to the right place. 
+    </div>
+    <div>
+        {{ loginform.value | json }}
+        <form (ngSubmit)="login()" [formGroup]="loginform" class="login-form"  >
+            <div class="form-group">
+                <label for="username" >Username</label>
+                <input formControlName="username" id="username" type="email" autocomplete="username" class="flex w-full border-2 rounded-b-md px-3 py-2 appearance-none text-gray-300 placeholder-gray-300" placeholder="Username" >
+            </div>
+            <div class="form-group">
+                <label for="password" >Password</label>
+                <input formControlName="password" id="password" type="password" autocomplete="current-password" class="flex w-full border-2 rounded-b-md px-3 py-2 appearance-none text-gray-300 placeholder-gray-300" placeholder="Password">
+            </div>
+             <div class="btn-container"> 
+                <button  [disabled]="!loginform.valid" class="btn btn-dark " (click)="login()">Login</button>
+            </div>
+        </form>
+    </div>    
+        
+</div>   
+
+
+
+   

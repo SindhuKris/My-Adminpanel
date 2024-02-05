@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
+declare const sessionStorage: Storage;
+
 @Injectable({
   providedIn: 'root'
 })
 
-declare const sessionStorage: Storage;
 
 export class SessionService {
   private_token!: string;

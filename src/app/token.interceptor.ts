@@ -6,37 +6,29 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { StoreService } from './services/store.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(
+    private storSer: StoreService
+  ) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(
+    request: HttpRequest<any>, 
+    next: HttpHandler
+    ): Observable<HttpEvent<any>> {
+      const accessToken = this.storSer.token;
+      if (accessToken){
+        request = request.clone({
+          setHeaders: {
+            Authorization: 'Bearer ${accessToken}',
+            'x-fresh': '${refresh}',
+          },
+        });
+      }
     return next.handle(request);
   }
-}
-
-
-@Injectable()
-export class JwtInterceptor implements HttpInterceptor {
-    constructor(private router: Router, private storeSer: StoreService) {}
-
-    intercept(
-        request: HttpRequest<any>,
-        next: HttpHandler
-    ): Observable<HttpEvent<any>> {
-        const accessToken = this.storeSer.token;
-        const refresh = this.storeSer.refreshToken;
-        if (accessToken) {
-            request = request.clone({
-                setHeaders: {
-                    Authorization: `Bearer ${accessToken}`,
-                    'x-refresh': `${refresh}`,
-                },
-            });
-        }
-        return next.handle(request);
-    }
 }
 

@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { MovieComponent } from './movie/movie.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceModule } from './services/service.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
